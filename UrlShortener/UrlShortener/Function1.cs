@@ -24,15 +24,10 @@ namespace UrlShortener
 
             string name = req.Query["name"];
 
-            string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
-            dynamic data = JsonConvert.DeserializeObject(requestBody);
-            name = name ?? data?.name;
+            log.LogInformation($"Argument: {name}");
 
-            string responseMessage = string.IsNullOrEmpty(name)
-                ? "This HTTP triggered function executed successfully. Pass a name in the query string or in the request body for a personalized response."
-                : $"Hello, {name}. This HTTP triggered function executed successfully.";
 
-            string test = @"<!DOCTYPE html>
+            string test = @$"<!DOCTYPE html>
 <html>
 <head>
     <meta charset = 'utf-8'>
@@ -44,7 +39,7 @@ namespace UrlShortener
           <meta name = 'viewport' content = 'width=device-width, initial-scale=1'>
          </head>
          <body>
-             test!
+             Argument: {name}
 
     asdsadsadsad
 </body>
