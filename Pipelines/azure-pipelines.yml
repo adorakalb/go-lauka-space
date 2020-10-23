@@ -11,7 +11,7 @@ variables:
   azureSubscription: '6b9cc1d0-6b66-4627-b73e-eabd918aedb8'
 
   # Function app name
-  functionAppName: 'we-urlshortener-func'
+  functionAppName: 'func-urlshortener-we'
 
   # Agent VM image name
   vmImageName: 'vs2017-win2016'
