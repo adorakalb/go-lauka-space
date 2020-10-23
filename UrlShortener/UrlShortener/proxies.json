@@ -6,7 +6,21 @@
         "route": "/",
         "methods": [ "GET" ]
       },
-      "backendUri": "http://%WEBSITE_HOSTNAME%/api/baseurl"
-    }
+      "backendUri": "http://%WEBSITE_HOSTNAME%/api/index"
+    },
+    "Static File Handling": {
+      "matchCondition": {
+        "route": "/static/{file}",
+        "methods": [ "GET" ]
+      },
+      "backendUri": "http://%WEBSITE_HOSTNAME%/api/static?file={file}"
+    },
+    "Parameter Handling": {
+      "matchCondition": {
+        "route": "/{shortlink}",
+        "methods": [ "GET" ]
+      },
+      "backendUri": "http://%WEBSITE_HOSTNAME%/api/redirect?sl={shortlink}"
+    }    
   }
 }

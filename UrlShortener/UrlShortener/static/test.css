@@ -1,0 +1,53 @@
+﻿.hp #searchform {
+    transition: top 0.4s ease,transform 0.4s ease
+}
+
+#lga {
+    transition: margin-top 0.4s ease,height 0.4s ease
+}
+
+div#lga img#hplogo {
+    transition: padding-top 0.4s ease,width 0.4s ease,height 0.4s ease;
+    width: auto
+}
+
+div#lga div#hplogo {
+    max-width: 100%;
+    line-height: 233px;
+    transition: height 0.4s ease,transform 0.4s ease,width 0.4s ease
+}
+
+div#hplogo a img {
+    max-width: 100%;
+    height: auto;
+    vertical-align: bottom
+}
+
+@media only screen and (max-height:536px) {
+    .hp #searchform {
+        transform: translateY(-129px)
+    }
+
+    .hp #lga {
+        height: 100px
+    }
+
+    div#lga img#hplogo {
+        padding-top: 10px !important;
+        height: 72px;
+        width: auto
+    }
+
+    div#hplogo {
+        transform: scale(.5) translateY(-120px);
+        width: 400px !important
+    }
+
+    .fOwUFe {
+        right: -15px;
+        top: unset !important;
+        left: unset !important;
+        bottom: 20px;
+        transform: scale(1.53)
+    }
+}

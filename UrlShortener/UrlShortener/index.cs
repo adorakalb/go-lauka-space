@@ -11,11 +11,11 @@ using System.Net;
 
 namespace UrlShortener
 {
-    public static class Function1
+    public static class index
     {
-        [FunctionName("Function1")]
+        [FunctionName("index")]
         public static async Task<IActionResult> Run(
-            [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "baseurl")] HttpRequest req,
+            [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "index")] HttpRequest req,
             ILogger log)
         {
             log.LogInformation("C# HTTP trigger function processed a request.");
@@ -27,7 +27,7 @@ namespace UrlShortener
             log.LogInformation($"Argument: {name}");
 
 
-            string test = @$"<!DOCTYPE html>
+            string test = $@"<!DOCTYPE html>
 <html>
 <head>
     <meta charset = 'utf-8'>
