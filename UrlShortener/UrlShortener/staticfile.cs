@@ -9,7 +9,6 @@ using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using System.Net.Http;
 using System.Net;
-using RestSharp;
 using System.Linq;
 using System.Net.Http.Headers;
 
