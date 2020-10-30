@@ -18,16 +18,10 @@ namespace UrlShortener
             [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "index")] HttpRequest req,
             ILogger log)
         {
-            log.LogInformation("C# HTTP trigger function processed a request.");
+            string user = req.Headers["X-MS-CLIENT-PRINCIPAL-NAME"];
 
 
-
-            string name = req.Query["name"];
-
-            log.LogInformation($"Argument: {name}");
-
-
-            string test = $@"<!DOCTYPE html>
+            string test = @$"<!DOCTYPE html>
 <html>
 <head>
     <meta charset = 'utf-8'>
@@ -39,9 +33,8 @@ namespace UrlShortener
           <meta name = 'viewport' content = 'width=device-width, initial-scale=1'>
          </head>
          <body>
-             Argument: {name}
-
-    asdsadsadsad
+             User: {user} <br/>
+            <a href='/.auth/login/aad'>Log in with Azure AD</a>
 </body>
 </html> ";
 
