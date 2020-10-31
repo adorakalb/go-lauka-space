@@ -18,7 +18,12 @@ namespace UrlShortener
             [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "index")] HttpRequest req,
             ILogger log)
         {
-            string user = req.Headers["X-MS-CLIENT-PRINCIPAL-NAME"];
+            string username = req.Headers["X-MS-CLIENT-PRINCIPAL-NAME"];
+
+            if(string.IsNullOrWhiteSpace(username))
+            {
+                return new RedirectResult("/.auth/login/aad", false);
+            }
 
 
             string test = @$"<!DOCTYPE html>
@@ -33,7 +38,7 @@ namespace UrlShortener
           <meta name = 'viewport' content = 'width=device-width, initial-scale=1'>
          </head>
          <body>
-             User: {user} <br/>
+             User: {username} <br/>
             <a href='/.auth/login/aad'>Log in with Azure AD</a>
 </body>
 </html> ";
