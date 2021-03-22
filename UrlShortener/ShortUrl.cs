@@ -7,7 +7,26 @@ namespace UrlShortener
 {
     class ShortUrl : TableEntity
     {
-        public string Extension { get; set; }
         public string RedirectUrl { get; set; }
+        
+        public ShortUrl()
+        {
+
+        }
+
+        public ShortUrl( string shorturl, string redirecturl )
+        {
+            PartitionKey = shorturl;
+            RowKey = shorturl;
+            RedirectUrl = redirecturl;
+        }
+
+        public ShortUrl( string shorturl )
+        {
+            PartitionKey = shorturl;
+            RowKey = shorturl;
+            RedirectUrl = "";
+        }
     }
+    
 }

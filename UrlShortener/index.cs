@@ -14,7 +14,7 @@ namespace UrlShortener
     public static class index
     {
         [FunctionName("index")]
-        public static async Task<IActionResult> Run(
+        public static async Task<IActionResult> Index(
             [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "index")] HttpRequest req,
             ILogger log)
         {
