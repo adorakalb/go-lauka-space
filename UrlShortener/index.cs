@@ -33,7 +33,7 @@ namespace UrlShortener
             string index = filehandler.GetFileContent("index.html");
 
             string table = "";
-            int counter = 0;
+            int counter = 1;
 
             table += "<table class='table table-striped'>\n";
             table += "<thead>\n";
