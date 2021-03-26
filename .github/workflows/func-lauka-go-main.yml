@@ -9,7 +9,7 @@ env:
   AZURE_FUNCTIONAPP_PUBLISH_PROFILE: ${{ secrets.FUNC_LAUKA_GO_MAIN_FFFF }}
   CONFIGURATION: Release
   DOTNET_CORE_VERSION: 3.1.x
-  WORKING_DIRECTORY: .
+  WORKING_DIRECTORY: ./UrlShortener
 jobs:
   build-and-deploy:
     runs-on: windows-latest

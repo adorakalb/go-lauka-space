@@ -27,6 +27,11 @@ namespace UrlShortener
 
             return shorturl;
         }
+        public IEnumerable<ShortUrl> GetAll()
+        {
+            TableQuery<ShortUrl> query = new TableQuery<ShortUrl>();
+            return _table.ExecuteQuery(query);
+        }
     }
 
 }
