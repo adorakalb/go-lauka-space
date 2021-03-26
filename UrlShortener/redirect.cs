@@ -21,9 +21,7 @@ namespace UrlShortener
             UrlManager db = new UrlManager(Environment.GetEnvironmentVariable("AzureWebJobsStorage"), "shorturl");
             ShortUrl url = await db.GetEntityFromTableByKey(query);
 
-            //return new ContentResult { Content = url.RedirectUrl, ContentType = "text/plain", StatusCode = 200 };
-
-            if (String.IsNullOrWhiteSpace(url.RedirectUrl))
+            if (url == null)
             {
                 return new NotFoundResult();
             }

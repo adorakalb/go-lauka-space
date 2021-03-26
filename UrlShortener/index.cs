@@ -19,18 +19,23 @@ namespace UrlShortener
             [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "index")] HttpRequest req,
             ILogger log)
         {
-            string username = req.Headers["X-MS-CLIENT-PRINCIPAL-NAME"];
-
-            if(string.IsNullOrWhiteSpace(username))
+            if (Environment.GetEnvironmentVariable("APP_DEBUG_ISRUNLOCALLY") != "true")
             {
-                return new RedirectResult("/.auth/login/aad", false);
+                string username = req.Headers["X-MS-CLIENT-PRINCIPAL-NAME"];
+                if (string.IsNullOrWhiteSpace(username))
+                {
+                    return new RedirectResult("/.auth/login/aad", false);
+                }
             }
+            
 
             UrlManager urlmanager = new UrlManager(Environment.GetEnvironmentVariable("AzureWebJobsStorage"), "shorturl");
             IEnumerable<ShortUrl> urls = urlmanager.GetAll();
 
             StaticFileHandler filehandler = new StaticFileHandler(Environment.GetEnvironmentVariable("AzureWebJobsStorage"), "static");
             string index = filehandler.GetFileContent("index.html");
+            index = index.Replace("##APPCONFIG_DOMAINNAME##", Environment.GetEnvironmentVariable("APP_DOMAINNAME"));
+
 
             string table = "";
             int counter = 1;
@@ -49,7 +54,7 @@ namespace UrlShortener
             {
                 table += "<tr>\n";
                 table += $"<th scope='row'>{counter}</th>\n";
-                table += $"<td>/{url.PartitionKey}</td>\n";
+                table += $"<td>{url.PartitionKey}</td>\n";
                 table += $"<td>{url.RedirectUrl}</td>\n";
                 table += "</tr>\n";
                 counter++;  
