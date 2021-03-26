@@ -20,7 +20,7 @@ namespace UrlShortener
             string query = req.Query["id"];
 
             UrlManager db = new UrlManager(Environment.GetEnvironmentVariable("AzureWebJobsStorage"), "shorturl");
-            ShortUrl url = await db.GetEntityFromTableByKey(query);
+            ShortUrl url = await db.GetEntityFromTableByKeyAsync(query);
             
             return new ContentResult { Content = url.RedirectUrl, ContentType = "text/plain", StatusCode = 200 };
         }

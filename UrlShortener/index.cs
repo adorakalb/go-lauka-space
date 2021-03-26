@@ -46,6 +46,7 @@ namespace UrlShortener
             table += "<th scope='col'>#</th>\n";
             table += "<th scope='col'>Slug</th>\n";
             table += "<th scope='col'>URL</th>\n";
+            table += "<th scope='col'>Delete</th>\n";
             table += "</tr>\n";
             table += "</thead>\n";
             table += "<tbody>\n";
@@ -56,6 +57,7 @@ namespace UrlShortener
                 table += $"<th scope='row'>{counter}</th>\n";
                 table += $"<td>{url.PartitionKey}</td>\n";
                 table += $"<td>{url.RedirectUrl}</td>\n";
+                table += $"<td><a href='/api/delete?slug={url.PartitionKey}'><button type='button' class='btn btn-sm btn-danger'>Delete</button></a></td>\n";
                 table += "</tr>\n";
                 counter++;  
             }

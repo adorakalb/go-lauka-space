@@ -17,7 +17,7 @@ namespace UrlShortener
             _table = tableClient.GetTableReference(dbname);
         }
 
-        public async Task<ShortUrl> GetEntityFromTableByKey(string key)
+        public async Task<ShortUrl> GetEntityFromTableByKeyAsync(string key)
         {
             var shorturl = (ShortUrl)_table.Execute(TableOperation.Retrieve<ShortUrl>(key, key)).Result;
             
@@ -38,6 +38,11 @@ namespace UrlShortener
         public async Task AddOrReplaceEntityAsync(ShortUrl url)
         {
             TableOperation op = TableOperation.InsertOrReplace(url);
+            await _table.ExecuteAsync(op);
+        }
+        public async Task DeleteEntityAsync(ShortUrl url)
+        {
+            TableOperation op = TableOperation.Delete(url);
             await _table.ExecuteAsync(op);
         }
     }

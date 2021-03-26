@@ -19,11 +19,11 @@ namespace UrlShortener
             string query = req.Query["sl"];
 
             UrlManager db = new UrlManager(Environment.GetEnvironmentVariable("AzureWebJobsStorage"), "shorturl");
-            ShortUrl url = await db.GetEntityFromTableByKey(query);
+            ShortUrl url = await db.GetEntityFromTableByKeyAsync(query);
 
             if (url == null)
             {
-                return new NotFoundResult();
+                return new ContentResult { Content = "404 Not Found", ContentType = "text/plain", StatusCode = 404 };
             }
             else
             {
